@@ -24,6 +24,11 @@ const PostShare = () => {
     }
   };
 
+  const reset = () => {
+    setImage(null);
+    desc.current.value = "";
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -45,6 +50,7 @@ const PostShare = () => {
       }
     }
     dispatch(uploadPost(newPost));
+    reset();
   };
   return (
     <div className="PostShare">
@@ -72,8 +78,12 @@ const PostShare = () => {
             <UilSchedule />
             Shedule
           </div>
-          <button className="button ps-button" onClick={handleSubmit}>
-            Share
+          <button
+            className="button ps-button"
+            onClick={handleSubmit}
+            disabled={upLoading}
+          >
+            {upLoading ? "upLoading..." : "Share"}
           </button>
           <div style={{ display: "none" }}>
             <input
