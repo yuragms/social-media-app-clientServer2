@@ -1,7 +1,18 @@
 import { Modal, useMantineTheme } from "@mantine/core";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
-function ProfileModal({ modalOpened, setModalOpened }) {
+function ProfileModal({ modalOpened, setModalOpened, data }) {
   const theme = useMantineTheme();
+  const { password, ...other } = data;
+  const [formData, setFormData] = useState(other);
+  const [profileImage, setProfileImage] = useState(null);
+  const [coverImage, setCoverImage] = useState(null);
+  const dispatch = useDispatch();
+  const param = useParams();
+  const { user } = useSelector((state) => state.authReducer.authData);
 
   return (
     <Modal
@@ -22,13 +33,13 @@ function ProfileModal({ modalOpened, setModalOpened }) {
           <input
             type="text"
             className="infoInput"
-            name="FirstName"
+            name="firstName"
             placeholder="First Name"
           />
           <input
             type="text"
             className="infoInput"
-            name="LastName"
+            name="lastName"
             placeholder="Last Name"
           />
         </div>
@@ -36,7 +47,7 @@ function ProfileModal({ modalOpened, setModalOpened }) {
           <input
             type="text"
             className="infoInput"
-            name="worksAT"
+            name="worksAt"
             placeholder="Works at"
           />
         </div>
@@ -44,13 +55,13 @@ function ProfileModal({ modalOpened, setModalOpened }) {
           <input
             type="text"
             className="infoInput"
-            name="livesIN"
+            name="livesin"
             placeholder="LIves in"
           />
           <input
             type="text"
             className="infoInput"
-            name="Country"
+            name="country"
             placeholder="Country"
           />
         </div>
@@ -59,13 +70,14 @@ function ProfileModal({ modalOpened, setModalOpened }) {
             type="text"
             className="infoInput"
             placeholder="RelationShip Status"
+            name="relationship"
           />
         </div>
         <div>
           Profile Image
-          <input type="file" name="profileImg" />
+          <input type="file" name="profileImge" />
           Cover Image
-          <input type="file" name="coverImg" />
+          <input type="file" name="coverImge" />
         </div>
         <button className="button infoButton">Update</button>
       </form>
