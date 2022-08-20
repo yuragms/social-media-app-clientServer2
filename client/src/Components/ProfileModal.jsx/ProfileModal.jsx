@@ -1,8 +1,7 @@
 import { Modal, useMantineTheme } from "@mantine/core";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { uploadImage } from "../../actions/uploadAction";
 import { updateUser } from "../../actions/userAction";
 
@@ -14,6 +13,7 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
   const [coverImage, setCoverImage] = useState(null);
   const dispatch = useDispatch();
   const param = useParams();
+
   const { user } = useSelector((state) => state.authReducer.authData);
 
   const handleChange = (e) => {
@@ -22,6 +22,7 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
 
   const onImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
+      let img = e.target.files[0];
       e.target.name === "profileImage"
         ? setProfileImage(img)
         : setCoverImage(img);
@@ -32,20 +33,25 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
     e.preventDefault();
     let UserData = formData;
     if (profileImage) {
+      console.log(" work1");
       const data = new FormData();
       const fileName = Date.now() + profileImage.name;
       data.append("name", fileName);
       data.append("file", profileImage);
       UserData.profilePicture = fileName;
       try {
+        console.log(profileImage);
+        console.log(UserData);
         dispatch(uploadImage(data));
       } catch (error) {
         console.log(error);
       }
     }
     if (coverImage) {
+      console.log(" work2");
+      console.log(profileImage);
       const data = new FormData();
-      const fileName = Date.now() + cover.name;
+      const fileName = Date.now() + coverImage.name;
       data.append("name", fileName);
       data.append("file", coverImage);
       UserData.coverPicture = fileName;
@@ -77,18 +83,18 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
           <input
             type="text"
             className="infoInput"
-            name="firstName"
+            name="firstname"
             placeholder="First Name"
             onChange={handleChange}
-            value={formData.firstName}
+            value={formData.firstname}
           />
           <input
             type="text"
             className="infoInput"
-            name="lastName"
+            name="lastname"
             placeholder="Last Name"
             onChange={handleChange}
-            value={formData.lastName}
+            value={formData.lastname}
           />
         </div>
         <div>
@@ -106,7 +112,8 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
             type="text"
             className="infoInput"
             name="livesin"
-            placeholder="LIves in"
+            placeholder="Lives in"
+            onChange={handleChange}
             value={formData.livesin}
           />
           <input
@@ -130,9 +137,9 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
         </div>
         <div>
           Profile Image
-          <input type="file" name="profileImge" onChange={onImageChange} />
+          <input type="file" name="profileImage" onChange={onImageChange} />
           Cover Image
-          <input type="file" name="coverImge" onChange={onImageChange} />
+          <input type="file" name="coverImage" onChange={onImageChange} />
         </div>
         <button className="button infoButton" onClick={handleSubmit}>
           Update
