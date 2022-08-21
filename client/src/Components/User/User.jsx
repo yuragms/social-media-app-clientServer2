@@ -7,7 +7,7 @@ const User = ({ person, id }) => {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user } = useSelector((state) => state.authReducer.authData);
   const [following, setFollowing] = useState(
-    person.following.includes(user.id)
+    person.followers.includes(user._id)
   );
 
   const handleFollow = () => {
@@ -34,7 +34,12 @@ const User = ({ person, id }) => {
           <span>@{person.username}</span>
         </div>
       </div>
-      <button className="button fc-button" onClick={handleFollow}>
+      <button
+        className={
+          following ? "button fc-button UnfollowButton" : "button fc-button"
+        }
+        onClick={handleFollow}
+      >
         {following ? "Unfollow" : "Follow"}
       </button>
     </div>
