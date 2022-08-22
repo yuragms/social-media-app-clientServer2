@@ -7,6 +7,7 @@ import AuthRoute from "./Routes/AuthRoute.js";
 import UserRoute from "./Routes/UserRoute.js";
 import PostRoute from "./Routes/PostRoute.js";
 import UploadRoute from "./Routes/UploadRoute.js";
+import ChatRoute from "./Routes/ChatRoute.js";
 
 // Routes
 
@@ -42,3 +43,4 @@ app.use("/auth", AuthRoute);
 app.use("/user", UserRoute);
 app.use("/posts", PostRoute);
 app.use("/upload", UploadRoute);
+app.use("/chat", ChatRoute);
