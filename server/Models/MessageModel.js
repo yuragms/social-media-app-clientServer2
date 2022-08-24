@@ -2,13 +2,13 @@ import mongoose from "mongoose";
 const MessageShema = mongoose.Schema(
   {
     chatId: {
-      type: Array,
+      type: String,
     },
     senderId: {
-      type: Array,
+      type: String,
     },
     text: {
-      type: Array,
+      type: String,
     },
   },
   {
