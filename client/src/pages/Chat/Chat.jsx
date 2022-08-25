@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import LogoSearch from "../../Components/LogoSearch/LogoSearch";
 import "./Chat.css";
 import { useSelector } from "react-redux";
@@ -10,12 +10,18 @@ import Home from "../../img/home.png";
 import Noti from "../../img/noti.png";
 import Comment from "../../img/comment.png";
 import ChatBox from "../../Components/ChatBox/ChatBox";
+import { io } from "socket.io-client";
 
 const Chat = () => {
   const { user } = useSelector((state) => state.authReducer.authData);
   console.log(user);
   const [chats, setChats] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
+  const socket = useRef();
+
+  useEffect(() => {
+    socket.current = io("http://localhost:8800");
+  });
 
   useEffect(() => {
     const getChats = async () => {
