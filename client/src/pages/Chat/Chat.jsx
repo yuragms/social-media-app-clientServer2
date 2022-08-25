@@ -4,11 +4,18 @@ import "./Chat.css";
 import { useSelector } from "react-redux";
 import { userChats } from "../../api/ChatRequest";
 import Conversation from "../../Components/Conversation/Conversation";
+import { Link } from "react-router-dom";
+import { UilSetting } from "@iconscout/react-unicons";
+import Home from "../../img/home.png";
+import Noti from "../../img/noti.png";
+import Comment from "../../img/comment.png";
+import ChatBox from "../../Components/ChatBox/ChatBox";
 
 const Chat = () => {
   const { user } = useSelector((state) => state.authReducer.authData);
   console.log(user);
   const [chats, setChats] = useState([]);
+  const [currentChat, setCurrentChat] = useState(null);
 
   useEffect(() => {
     const getChats = async () => {
@@ -29,7 +36,7 @@ const Chat = () => {
           <h2>Chats</h2>
           <div className="Chat-list">
             {chats.map((chat, id) => (
-              <div key={id}>
+              <div key={id} onClick={() => setCurrentChat(chat)}>
                 <Conversation data={chat} currentUserId={user._id} />
               </div>
             ))}
@@ -38,7 +45,20 @@ const Chat = () => {
       </div>
       {/* Right Side */}
       <div className="Right-side-chat">
-        <div className="Right-side">Right-side</div>
+        <div style={{ width: "20rem", alignSelf: "flex-end" }}>
+          <div className="navIcons">
+            <Link to="../home">
+              <img src={Home} alt="" />
+            </Link>
+            <UilSetting />
+            <img src={Noti} alt="" />
+            <Link to="../chat">
+              <img src={Comment} alt="" />
+            </Link>
+          </div>
+        </div>{" "}
+        {/* chat body */}
+        <ChatBox chat={currentChat} currentUser={user._id} />
       </div>
     </div>
   );
