@@ -12,7 +12,7 @@ const router = express.Router();
 
 dotenv.config();
 
-const bucketName = process.env.AWS_BUCKET_NAME;
+const bucketName = process.env.AWS_BUCKET_NAME_POSTIMAGE;
 const region = process.env.AWS_BUCKET_REGION;
 const accessKeyId = process.env.AWS_ACCESS_KEY;
 const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
@@ -33,10 +33,10 @@ router.post("/", upload.single("file"), async (req, res) => {
     console.log("req.body", req.body);
     console.log("req.file", req.file);
     req.file.buffer;
-
+    const bucketFolder = "posts/" + req.body.name;
     const params = {
       Bucket: bucketName,
-      Key: req.body.name,
+      Key: bucketFolder,
       Body: req.file.buffer,
       ContenntType: req.file.mimetype,
     };
