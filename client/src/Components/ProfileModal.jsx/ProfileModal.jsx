@@ -35,7 +35,8 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
     if (profileImage) {
       console.log(" work1");
       const data = new FormData();
-      const fileName = Date.now() + profileImage.name;
+      // const fileName = Date.now() + profileImage.name;
+      const fileName = "avatar/" + Date.now() + profileImage.name;
       data.append("name", fileName);
       data.append("file", profileImage);
       UserData.profilePicture = fileName;
@@ -51,7 +52,8 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
       console.log(" work2");
       console.log(profileImage);
       const data = new FormData();
-      const fileName = Date.now() + coverImage.name;
+      // const fileName = Date.now() + coverImage.name;
+      const fileName = "cover/" + Date.now() + coverImage.name;
       data.append("name", fileName);
       data.append("file", coverImage);
       UserData.coverPicture = fileName;
