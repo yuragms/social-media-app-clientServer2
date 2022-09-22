@@ -17,7 +17,7 @@ const ProfileCard = ({ location }) => {
           src={
             user.coverPicture
               ? serverPublic + user.coverPicture
-              : serverPublic + "defaultCover.jpg"
+              : serverPublic + "cover/defaultCover.jpg"
           }
           alt=""
         />
@@ -25,7 +25,7 @@ const ProfileCard = ({ location }) => {
           src={
             user.profilePicture
               ? serverPublic + user.profilePicture
-              : serverPublic + "defaultProfile.png"
+              : serverPublic + "avatar/defaultProfile.png"
           }
           alt=""
         />

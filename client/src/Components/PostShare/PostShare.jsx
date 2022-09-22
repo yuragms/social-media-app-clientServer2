@@ -50,7 +50,13 @@ const PostShare = () => {
         console.log(error);
       }
     }
-    dispatch(uploadPost(newPost));
+    const uploadPostt = () => {
+      dispatch(uploadPost(newPost));
+    };
+    setTimeout(uploadPostt, 2000);
+
+    clearTimeout(uploadPostt);
+
     reset();
   };
   return (
@@ -59,7 +65,7 @@ const PostShare = () => {
         src={
           user.profilePicture
             ? serverPublic + user.profilePicture
-            : serverPublic + "defaultProfile.png"
+            : serverPublic + "avatar/defaultProfile.png"
         }
         alt=""
       />
