@@ -63,7 +63,14 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
         console.log(error);
       }
     }
-    dispatch(updateUser(param.id, UserData));
+    // dispatch(updateUser(param.id, UserData));
+    const updateUserMongo = () => {
+      dispatch(updateUser(param.id, UserData));
+    };
+    setTimeout(updateUserMongo, 1500);
+
+    clearTimeout(updateUserMongo);
+
     setModalOpened(false);
   };
   return (

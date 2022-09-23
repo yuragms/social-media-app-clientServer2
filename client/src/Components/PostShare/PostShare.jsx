@@ -50,10 +50,11 @@ const PostShare = () => {
         console.log(error);
       }
     }
+
     const uploadPostt = () => {
       dispatch(uploadPost(newPost));
     };
-    setTimeout(uploadPostt, 2000);
+    setTimeout(uploadPostt, 1500);
 
     clearTimeout(uploadPostt);
 
