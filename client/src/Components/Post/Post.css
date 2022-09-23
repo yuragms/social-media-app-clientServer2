@@ -16,3 +16,7 @@
   align-items: flex-start;
   gap: 1.5rem;
 }
+.btnLine {
+  display: flex;
+  justify-content: space-between;
+}

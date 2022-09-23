@@ -19,6 +19,7 @@ const Posts = () => {
   }, []);
   console.log(posts);
   if (!posts) return "No posts";
+  console.log(params);
   if (params.id) posts = posts.filter((post) => post.userId === params.id);
 
   return (
