@@ -4,10 +4,12 @@ import Comment from "../../img/comment.png";
 import Share from "../../img/share.png";
 import Heart from "../../img/like.png";
 import NotLike from "../../img/notlike.png";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { likePost, deletePost } from "../../api/PostsRequests";
+// import { getTimelinePosts } from "../../actions/postsAction";
 
 const Post = ({ data }) => {
+  // const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authReducer.authData);
   const [liked, setLiked] = useState(data.likes.includes(user._id));
   const [likes, setLikes] = useState(data.likes.length);
@@ -22,6 +24,7 @@ const Post = ({ data }) => {
     deletePost(data._id, user._id);
     console.log({ deletePost: data._id });
     console.log({ userId: user._id });
+    // dispatch(getTimelinePosts(user._id));
   };
 
   return (

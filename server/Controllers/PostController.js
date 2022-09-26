@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import UserModel from "../Models/userModel.js";
 // import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 // import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { deleteFileS3 } from "../s3.js";
 
 export const createPost = async (req, res) => {
   const newPost = new PostModel(req.body);
@@ -60,19 +61,21 @@ export const updatePost = async (req, res) => {
 //Delete a post
 export const deletePost = async (req, res) => {
   const postId = req.params.id;
-  // const { userId } = req.body;
-  // console.log(postId);
-  // console.log(userId);
-  // console.log(req.body);
+  console.log("work");
 
   try {
     const post = await PostModel.findById(postId);
-    // if (post.userId === userId) {
+    console.log(post.image);
+
+    // 1)delete file in aws S3
+    if (post.image) {
+      await deleteFileS3(post.image);
+    }
+
+    // 2)delete file in dataBasa Mongo
     await post.deleteOne();
+
     res.status(200).json("Post deleted successfully");
-    // } else {
-    //   res.status(403).json("Action forbidden");
-    // }
   } catch (error) {
     res.status(500).json(error);
   }
