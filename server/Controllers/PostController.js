@@ -75,7 +75,8 @@ export const deletePost = async (req, res) => {
     // 2)delete file in dataBasa Mongo
     await post.deleteOne();
 
-    res.status(200).json("Post deleted successfully");
+    // res.status(200).json("Post deleted successfully");
+    res.status(200).json(postId);
   } catch (error) {
     res.status(500).json(error);
   }
@@ -102,15 +103,6 @@ export const likePost = async (req, res) => {
 export const getTimelinePosts = async (req, res) => {
   const userId = req.params.id;
 
-  // const client = new S3Client(clientParams);
-  // for (const post of posts) {
-  //   const getObjectParams = {
-  //     Bucket: bucketName,
-  //     Key: post.image,
-  //   };
-  //   const command = new GetObjectCommand(getObjectParams);
-  //   const url = await getSignedUrl(client, command, { expiresIn: 3600 });
-  // }
   try {
     const currentUserPosts = await PostModel.find({ userId: userId });
 
