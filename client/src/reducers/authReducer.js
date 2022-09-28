@@ -31,7 +31,10 @@ const authReducer = (
         updaateLoading: false,
         error: true,
       };
-    case "FOLLOW_USER":
+    case "FOLLOW_USER_START":
+      return { ...state };
+
+    case "FOLLOW_USER_SUCCESS":
       return {
         ...state,
         authData: {
@@ -42,6 +45,9 @@ const authReducer = (
           },
         },
       };
+    case "FOLLOW_USER_FAIL":
+      console.log("Not Update Folloving action, maybe not valid token");
+
     case "UNFOLLOW_USER":
       return {
         ...state,
