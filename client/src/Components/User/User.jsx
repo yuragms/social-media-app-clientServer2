@@ -11,6 +11,7 @@ const User = ({ person, id }) => {
   );
 
   const handleFollow = () => {
+    console.log(user);
     following
       ? dispatch(unFollowUser(person._id, user))
       : dispatch(followUser(person._id, user));

@@ -47,8 +47,13 @@ const authReducer = (
       };
     case "FOLLOW_USER_FAIL":
       console.log("Not Update Folloving action, maybe not valid token");
+      localStorage.clear();
+      return { ...state, authData: null, loading: false, error: false };
 
-    case "UNFOLLOW_USER":
+    case "UNFOLLOW_USER_START":
+      return { ...state };
+
+    case "UNFOLLOW_USER_SUCCESS":
       return {
         ...state,
         authData: {
@@ -63,6 +68,11 @@ const authReducer = (
           },
         },
       };
+    case "FOLLOW_USER_FAIL":
+      console.log("Not Update Folloving action, maybe not valid token");
+      localStorage.clear();
+      return { ...state, authData: null, loading: false, error: false };
+
     case "LOG_OUT":
       localStorage.clear();
       return { ...state, authData: null, loading: false, error: false };

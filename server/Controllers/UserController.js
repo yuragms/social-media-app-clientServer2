@@ -88,7 +88,7 @@ export const followUser = async (req, res) => {
   const id = req.params.id;
 
   const { _id } = req.body;
-
+  console.log(_id);
   if (id === _id) {
     res.status(403).json("Action forbidden");
   } else {
@@ -99,7 +99,8 @@ export const followUser = async (req, res) => {
       if (!followUser.followers.includes(_id)) {
         await followUser.updateOne({ $push: { followers: _id } });
         await followingUser.updateOne({ $push: { following: id } });
-        res.status(200).json("User followed!");
+        // res.status(200).json("User followed!");
+        res.status(200).json(id);
       } else {
         res.status(403).json("User is Already followed by you");
       }
@@ -125,7 +126,7 @@ export const UnfollowUser = async (req, res) => {
       if (followUser.followers.includes(_id)) {
         await followUser.updateOne({ $pull: { followers: _id } });
         await followingUser.updateOne({ $pull: { following: id } });
-        res.status(200).json("User Unfollowed!");
+        res.status(200).json(id);
       } else {
         res.status(403).json("User is not followed by you");
       }
