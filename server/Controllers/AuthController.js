@@ -34,7 +34,9 @@ export const registerUser = async (req, res) => {
       { username: user.username, id: user._id },
       process.env.JWT_KEY,
       {
-        expiresIn: "1h",
+        // expiresIn: "1h",
+        // 1minute="60000"
+        expiresIn: "60000",
       }
     );
     // res.status(200).json(newUser);
@@ -59,7 +61,9 @@ export const loginUser = async (req, res) => {
           { username: user.username, id: user._id },
           process.env.JWT_KEY,
           {
-            expiresIn: "1h",
+            // expiresIn: "1h",
+            // 1minute="60000"
+            expiresIn: "60000",
           }
         );
         res.status(200).json({ user, token });
