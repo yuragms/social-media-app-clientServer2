@@ -7,7 +7,7 @@ export const logIn = (formData) => async (dispatch) => {
     dispatch({ type: "AUTH_SUCCESS", data: data });
   } catch (error) {
     console.log(error);
-    dispatch({ type: "AUTH_FAIL" });
+    dispatch({ type: "AUTH_FAIL", error });
   }
 };
 
@@ -18,7 +18,7 @@ export const signUp = (formData) => async (dispatch) => {
     dispatch({ type: "AUTH_SUCCESS", data: data });
   } catch (error) {
     console.log(error);
-    dispatch({ type: "AUTH_FAIL" });
+    dispatch({ type: "AUTH_FAIL", error });
   }
 };
 

@@ -81,3 +81,26 @@
   align-items: center;
   justify-content: center;
 }
+.Error {
+  color: red;
+  font-size: 0.6rem;
+  animation-name: error;
+  animation-duration: 2s;
+}
+
+@keyframes error {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+/* .Error:hover {
+  color: blue;
+  font-size: 0.6rem;
+ 
+  transition: all 10000ms ease-in-out;
+ 
+} */

@@ -7,6 +7,7 @@ import { logIn, signUp } from "../../actions/AuthAction";
 const Auth = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.authReducer.loading);
+  const error = useSelector((state) => state.authReducer.error);
   console.log({ loading: loading });
   const [isSignUp, setIsSignUp] = useState(false);
   const [data, setData] = useState({
@@ -104,6 +105,7 @@ const Auth = () => {
               onChange={handleChange}
               value={data.password}
             />
+
             {isSignUp && (
               <input
                 type="password"
@@ -115,6 +117,20 @@ const Auth = () => {
               />
             )}
           </div>
+          <div>
+            {error && (
+              <p className="Error">
+                {error === 404
+                  ? "This username does not exist"
+                  : error === 400
+                  ? isSignUp
+                    ? "username is already registred!"
+                    : "password not valid for this username"
+                  : error}
+              </p>
+            )}
+          </div>
+
           <span
             style={{
               display: confirmPass ? "none" : "block",
@@ -132,6 +148,7 @@ const Auth = () => {
               onClick={() => {
                 setIsSignUp((prev) => !prev);
                 resetForm();
+                dispatch({ type: "RESET_AUTH_ERROR" });
               }}
             >
               {isSignUp
