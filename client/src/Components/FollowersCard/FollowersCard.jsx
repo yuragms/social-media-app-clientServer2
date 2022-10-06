@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./FollowersCard.css";
 
-import { Followers } from "../../Data/FollowersData";
+// import { Followers } from "../../Data/FollowersData";
 import User from "../User/User";
 import { useSelector } from "react-redux";
 import { getAllUser } from "../../api/UserRequest";
@@ -18,6 +18,7 @@ const FollowersCard = () => {
     };
     fetchPersons();
   }, []);
+
   return (
     <div className="FollowersCard">
       <h3>People you may know</h3>

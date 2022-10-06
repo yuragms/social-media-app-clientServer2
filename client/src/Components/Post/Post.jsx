@@ -44,9 +44,11 @@ const Post = ({ data }) => {
           <img src={Share} alt="" />
         </div>
         <div>
-          <button className="button ps-button" onClick={delPost}>
-            delete
-          </button>
+          {data.userId === user._id && (
+            <button className="button ps-button" onClick={delPost}>
+              delete
+            </button>
+          )}
         </div>
       </div>
 
