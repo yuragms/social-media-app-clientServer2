@@ -28,6 +28,9 @@ const Post = ({ data }) => {
 
   return (
     <div className="Post">
+      <div className="userName">
+        {user.firstname} {user.lastname}
+      </div>
       <img
         src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""}
         alt=""
