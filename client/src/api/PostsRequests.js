@@ -1,12 +1,12 @@
 import axios from "axios";
-// const API = axios.create({
-//   baseURL: "https://mongo-socialmedia-app2.herokuapp.com",
-// });
-
 const API = axios.create({
-  baseURL: process.env.NODA_SERVER_URL,
-  // timeout: 5000,
+  baseURL: "https://social-mediapp-mongo-noda3.herokuapp.com",
 });
+
+// const API = axios.create({
+//   baseURL: process.env.NODA_SERVER_URL,
+// timeout: 5000,
+// });
 
 export const getTimelinePosts = (id) => API.get(`/posts/${id}/timeline`);
 
