@@ -4,7 +4,7 @@ import axios from "axios";
 // });
 
 const API = axios.create({
-  baseURL: process.env.PORT,
+  baseURL: process.env.NODA_SERVER_URL,
   // timeout: 5000,
 });
 
