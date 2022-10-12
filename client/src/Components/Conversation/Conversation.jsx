@@ -28,7 +28,8 @@ const Conversation = ({ data, currentUserId, online }) => {
             src={
               userData?.profilePicture
                 ? process.env.REACT_APP_PUBLIC_FOLDER + userData.profilePicture
-                : process.env.REACT_APP_PUBLIC_FOLDER + "defaultProfile.png"
+                : process.env.REACT_APP_PUBLIC_FOLDER +
+                  "avatar/defaultProfile.png"
             }
             alt=""
             style={{ width: "50px", height: "50px" }}

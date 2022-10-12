@@ -3,7 +3,7 @@ import axios from "axios";
 //   baseURL: "https://mongo-socialmedia-app2.herokuapp.com",
 // });
 const API = axios.create({
-  baseURL: "http://localhost:5001",
+  baseURL: process.env.PORT,
 });
 
 API.interceptors.request.use((req) => {

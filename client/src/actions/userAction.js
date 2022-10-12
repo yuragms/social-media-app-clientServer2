@@ -1,4 +1,5 @@
 import * as UserApi from "../api/UserRequest";
+import { createChat } from "../api/ChatRequest";
 
 export const updateUser = (id, formData) => async (dispatch) => {
   dispatch({ type: "UPDATING_START" });
@@ -16,6 +17,11 @@ export const followUser = (id, user) => async (dispatch) => {
     const { data } = await UserApi.followUser(id, user);
     console.log("Action FOLLOW_USER_START data : ", data);
     dispatch({ type: "FOLLOW_USER_SUCCESS", data: data });
+    const senderId = user._id;
+    const receiverId = id;
+    console.log(senderId, receiverId);
+    const { result } = await createChat({ senderId, receiverId });
+    console.log("createChat work : ", result);
   } catch (error) {
     dispatch({ type: "FOLLOW_USER_FAIL" });
   }

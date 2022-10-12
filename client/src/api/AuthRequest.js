@@ -1,6 +1,6 @@
 import axios from "axios";
 const API = axios.create({
-  baseURL: "http://localhost:5001",
+  baseURL: process.env.PORT,
 });
 // const API = axios.create({
 //   baseURL: "https://mongo-socialmedia-app2.herokuapp.com",
