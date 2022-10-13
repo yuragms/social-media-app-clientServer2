@@ -36,7 +36,9 @@ const Chat = () => {
   }, [user._id]);
 
   useEffect(() => {
-    socket.current = io("ws://localhost:8800");
+    // https://social-mediapp-socket.herokuapp.com/
+    socket.current = io("https://social-mediapp-socket.herokuapp.com");
+    // socket.current = io("ws://localhost:8800");
     socket.current.emit("new-user-add", user._id);
     socket.current.on("get-users", (users) => {
       setOnlineUsers(users);
