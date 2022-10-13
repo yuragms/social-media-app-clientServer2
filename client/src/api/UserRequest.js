@@ -1,10 +1,10 @@
 import axios from "axios";
-const API = axios.create({
-  baseURL: "https://social-mediapp-mongo-noda3.herokuapp.com",
-});
 // const API = axios.create({
-//   baseURL: process.env.NODA_SERVER_URL,
+//   baseURL: "https://social-mediapp-mongo-noda3.herokuapp.com",
 // });
+const API = axios.create({
+  baseURL: process.env.REACT_APP_PUBLIC_SERVER_HEROKKU,
+});
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
