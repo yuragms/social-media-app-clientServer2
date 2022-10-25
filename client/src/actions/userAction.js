@@ -1,5 +1,7 @@
 import * as UserApi from "../api/UserRequest";
 import { createChat } from "../api/ChatRequest";
+import { getTimelinePosts } from "./postsAction";
+import { useDispatch, useSelector } from "react-redux";
 
 export const updateUser = (id, formData) => async (dispatch) => {
   dispatch({ type: "UPDATING_START" });
@@ -20,8 +22,10 @@ export const followUser = (id, user) => async (dispatch) => {
     const senderId = user._id;
     const receiverId = id;
     console.log(senderId, receiverId);
+    dispatch(getTimelinePosts(user._id));
     const { result } = await createChat({ senderId, receiverId });
     console.log("createChat work : ", result);
+    console.log(senderId);
   } catch (error) {
     dispatch({ type: "FOLLOW_USER_FAIL" });
   }
